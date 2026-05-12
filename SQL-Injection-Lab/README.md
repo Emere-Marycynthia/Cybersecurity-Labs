@@ -1,12 +1,12 @@
 # SQL Injection Lab
 
 ## Objective
-This lab demonstrates SQL injection testing and database enumeration using SQLMap against the deliberately vulnerable web application Damn Vulnerable Web Application.The goal is to understand how attackers enumerate databases, retrieve table information, and extract sensitive data from insecure web applications..
+This lab demonstrates SQL injection testing and database enumeration using SQLMap against the deliberately vulnerable web application Damn Vulnerable Web Application(DVWA).The goal is to understand how attackers enumerate databases, retrieve table information, and extract sensitive data from insecure web applications..
 
 ## Tools Used
 - Kali Linux
 - SQLMap
-- DVWA / vulnerable test website
+- DVWA (A vulnerable test website)
 
 ## Tasks Performed
 - Tested web application for SQL injection
