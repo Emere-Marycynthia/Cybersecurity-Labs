@@ -51,3 +51,16 @@ iv) sqlmap -u "http://10.248.53.179/dvwa/vulnerabilities/sqli/?id=1%27+OR+%271%2
 | Weak authentication handling | Session abuse                |
 | Exposed database structure   | Information disclosure       |
 
+## Mitigation Recommendations
+| Mitigation                     | Purpose                     |
+| ------------------------------ | --------------------------- |
+| Prepared statements            | It prevents injection       |
+| Parameterized queries          | Separates code from data    |
+| Input validation               | Blocks malicious payloads   |
+| Least privilege DB accounts    | It limits attacker impact   |
+| Web Application Firewall (WAF) | Detects malicious requests  |
+| Error handling                 | Prevents information leakage|
+
+
+
+
